@@ -33,6 +33,4 @@ class Recipe
     end
   end
 
-
-
 end
