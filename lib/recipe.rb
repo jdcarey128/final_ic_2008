@@ -16,8 +16,24 @@ class Recipe
 
   def total_calories
     @ingredients_required.sum do |ingredient, amount|
-      ingredient.calories * amount 
+      ingredient.calories * amount
     end
   end
+
+  def ingredients_by_calory
+    @ingredients_required.sort_by do |ingredient, amount|
+      ingredient.calories * amount
+    end.reverse
+  end
+
+  def summarize_ingredients_by_calorie
+    ingredients = []
+    ingredients_by_calory.map do |ingredient|
+      {ingredient: ingredient.first.name,
+      amount: ingredient.last.to_s + " " + ingredient.first.unit}
+    end
+  end
+
+
 
 end

@@ -42,5 +42,25 @@ class RecipeTest < Minitest::Test
     assert_equal 675, recipe2.total_calories
   end
 
+  def test_it_can_organize_recipe_ingredients_by_total_calories
+    recipe1 = Recipe.new("Mac and Cheese")
+    ingredient1 = Ingredient.new({name: "Cheese", unit: "C", calories: 100})
+    ingredient2 = Ingredient.new({name: "Macaroni", unit: "oz", calories: 30})
+    recipe1.add_ingredient(ingredient1, 2)
+    recipe1.add_ingredient(ingredient2, 8)
+
+    expected  = [[ingredient2, 8], [ingredient1, 2]]
+    assert_equal expected, recipe1.ingredients_by_calory
+  end
+
+  def test_it_can_organize_ingredients_by_calory_in_hash
+    recipe1 = Recipe.new("Mac and Cheese")
+    ingredient1 = Ingredient.new({name: "Cheese", unit: "C", calories: 100})
+    ingredient2 = Ingredient.new({name: "Macaroni", unit: "oz", calories: 30})
+    recipe1.add_ingredient(ingredient1, 2)
+    recipe1.add_ingredient(ingredient2, 8)
+    expected = [{:ingredient=>"Macaroni", :amount=>"8 oz"}, {:ingredient=>"Cheese", :amount=>"2 C"}]
+    assert_equal expected, recipe1.summarize_ingredients_by_calorie
+  end
 
 end

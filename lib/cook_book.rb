@@ -26,4 +26,8 @@ class CookBook
     end
   end
 
+  def summary
+    require "pry"; binding.pry
+  end
+
 end
