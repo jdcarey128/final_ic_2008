@@ -3,6 +3,7 @@ require 'minitest/pride'
 require './lib/ingredient'
 require './lib/recipe'
 require './lib/cook_book'
+require 'mocha/minitest'
 
 class CookBookTest < Minitest::Test
 
@@ -55,12 +56,18 @@ class CookBookTest < Minitest::Test
     ingredient3 = Ingredient.new({name: "Ground Beef", unit: "oz", calories: 100})
     ingredient4 = Ingredient.new({name: "Bun", unit: "g", calories: 75})
     recipe2.add_ingredient(ingredient1, 2)
-    recipe2.add_ingredient(ingredient3, 4)
     recipe2.add_ingredient(ingredient4, 1)
+    recipe2.add_ingredient(ingredient3, 4)
 
     cookbook.add_recipe(recipe1)
     cookbook.add_recipe(recipe2)
     assert_equal recipe2, cookbook.highest_calorie_meal
+  end
+
+  def test_it_can_return_the_date_its_created
+    Date.stubs(:today).returns(Date.new(2020,4,22))
+    cookbook = CookBook.new
+    assert_equal "04-22-2020", cookbook.date
   end
 
 end
