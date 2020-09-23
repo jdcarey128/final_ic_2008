@@ -50,7 +50,7 @@ class RecipeTest < Minitest::Test
     recipe1.add_ingredient(ingredient2, 8)
 
     expected  = [[ingredient2, 8], [ingredient1, 2]]
-    assert_equal expected, recipe1.ingredients_by_calory
+    assert_equal expected, recipe1.ingredients_by_calorie
   end
 
   def test_it_can_organize_ingredients_by_calory_in_hash

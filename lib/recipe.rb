@@ -27,7 +27,6 @@ class Recipe
   end
 
   def summarize_ingredients_by_calorie
-    ingredients = []
     ingredients_by_calorie.map do |ingredient|
       {ingredient: ingredient.first.name,
       amount: ingredient.last.to_s + " " + ingredient.first.unit}
