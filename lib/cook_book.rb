@@ -27,7 +27,12 @@ class CookBook
   end
 
   def summary
-    require "pry"; binding.pry
+    @recipes.map do |recipe|
+      {name: recipe.name, details: {
+        ingredients: recipe.summarize_ingredients_by_calorie,
+        total_calories: recipe.total_calories}
+        }
+    end
   end
 
 end

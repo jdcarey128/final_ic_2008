@@ -20,7 +20,7 @@ class Recipe
     end
   end
 
-  def ingredients_by_calory
+  def ingredients_by_calorie
     @ingredients_required.sort_by do |ingredient, amount|
       ingredient.calories * amount
     end.reverse
@@ -28,7 +28,7 @@ class Recipe
 
   def summarize_ingredients_by_calorie
     ingredients = []
-    ingredients_by_calory.map do |ingredient|
+    ingredients_by_calorie.map do |ingredient|
       {ingredient: ingredient.first.name,
       amount: ingredient.last.to_s + " " + ingredient.first.unit}
     end
